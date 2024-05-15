@@ -22,21 +22,13 @@
       <real_time_factor>1</real_time_factor>
     </physics>
 
-    <plugin
-      filename="ignition-gazebo-physics-system"
-      name="ignition::gazebo::systems::Physics">
+    <plugin filename="ignition-gazebo-physics-system" name="ignition::gazebo::systems::Physics">
     </plugin>
-    <plugin
-      filename="ignition-gazebo-scene-broadcaster-system"
-      name="ignition::gazebo::systems::SceneBroadcaster">
+    <plugin filename="ignition-gazebo-scene-broadcaster-system" name="ignition::gazebo::systems::SceneBroadcaster">
     </plugin>
-    <plugin
-      filename="ignition-gazebo-user-commands-system"
-      name="ignition::gazebo::systems::UserCommands">
+    <plugin filename="ignition-gazebo-user-commands-system" name="ignition::gazebo::systems::UserCommands">
     </plugin>
-    <plugin
-      filename="ignition-gazebo-sensors-system"
-      name="ignition::gazebo::systems::Sensors">
+    <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors">
       <render_engine>ogre2</render_engine>
     </plugin>
 
@@ -152,9 +144,7 @@
       <uri>
         https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/X3 UAV/4
       </uri>
-      <plugin
-        filename="ignition-gazebo-multicopter-motor-model-system"
-        name="ignition::gazebo::systems::MulticopterMotorModel">
+      <plugin filename="ignition-gazebo-multicopter-motor-model-system" name="ignition::gazebo::systems::MulticopterMotorModel">
         <robotNamespace>X3</robotNamespace>
         <jointName>X3/rotor_0_joint</jointName>
         <linkName>X3/rotor_0</linkName>
@@ -172,9 +162,7 @@
         <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
         <motorType>velocity</motorType>
       </plugin>
-      <plugin
-        filename="ignition-gazebo-multicopter-motor-model-system"
-        name="ignition::gazebo::systems::MulticopterMotorModel">
+      <plugin filename="ignition-gazebo-multicopter-motor-model-system" name="ignition::gazebo::systems::MulticopterMotorModel">
         <robotNamespace>X3</robotNamespace>
         <jointName>X3/rotor_1_joint</jointName>
         <linkName>X3/rotor_1</linkName>
@@ -192,9 +180,7 @@
         <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
         <motorType>velocity</motorType>
       </plugin>
-      <plugin
-        filename="ignition-gazebo-multicopter-motor-model-system"
-        name="ignition::gazebo::systems::MulticopterMotorModel">
+      <plugin filename="ignition-gazebo-multicopter-motor-model-system" name="ignition::gazebo::systems::MulticopterMotorModel">
         <robotNamespace>X3</robotNamespace>
         <jointName>X3/rotor_2_joint</jointName>
         <linkName>X3/rotor_2</linkName>
@@ -212,9 +198,7 @@
         <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
         <motorType>velocity</motorType>
       </plugin>
-      <plugin
-        filename="ignition-gazebo-multicopter-motor-model-system"
-        name="ignition::gazebo::systems::MulticopterMotorModel">
+      <plugin filename="ignition-gazebo-multicopter-motor-model-system" name="ignition::gazebo::systems::MulticopterMotorModel">
         <robotNamespace>X3</robotNamespace>
         <jointName>X3/rotor_3_joint</jointName>
         <linkName>X3/rotor_3</linkName>
@@ -232,9 +216,7 @@
         <rotorVelocitySlowdownSim>10</rotorVelocitySlowdownSim>
         <motorType>velocity</motorType>
       </plugin>
-      <plugin
-        filename="ignition-gazebo-multicopter-control-system"
-        name="ignition::gazebo::systems::MulticopterVelocityControl">
+      <plugin filename="ignition-gazebo-multicopter-control-system" name="ignition::gazebo::systems::MulticopterVelocityControl">
         <robotNamespace>X3</robotNamespace>
         <commandSubTopic>cmd_vel</commandSubTopic>
         <enableSubTopic>enable</enableSubTopic>
@@ -271,6 +253,56 @@
           </rotor>
         </rotorConfiguration>
       </plugin>
+      <link name='cam_link'>
+        <linkName>camera</linkName>
+        <pose frame=''>-0.118317 0.002195 0.004205 -0 -0 -3.12703</pose>
+        <inertial>
+          <mass>0.1</mass>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+        </inertial>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <sensor name='camera1' type='camera'>
+          <camera name="head">
+            <horizontal_fov>1.3962634</horizontal_fov>
+            <image>
+              <width>800</width>
+              <height>800</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.02</near>
+              <far>300</far>
+            </clip>
+          </camera>
+          <always_on>1</always_on>
+          <update_rate>30</update_rate>
+          <visualize>1</visualize>
+          <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+            <alwaysOn>true</alwaysOn>
+            <updateRate>0.0</updateRate>
+            <cameraName>iris/camera</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>camera_link</frameName>
+            <hackBaseline>0.07</hackBaseline>
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+          </plugin>
+        </sensor>
+      </link>
+      <pose>-100.27714676461076 -70.89751138737492 5.45 0 0 -1.5708</pose>
     </include>
 
     <model name='heightmap'>
@@ -280,7 +312,7 @@
           <geometry>
             <heightmap>
               <uri>file:///home/ark/coding/iq_sim/new_world/lake_travis/model://lake_travis/textures/lake_travis_heightmap.png</uri>
-              <size>400 400 20</size>
+              <size>200 200 20</size>
               <pos>0 0 0</pos>
             </heightmap>
           </geometry>
@@ -292,7 +324,7 @@
               <texture>
                 <diffuse>model://lake_travis/textures/lake_travis_aerial.png</diffuse>
                 <normal>model://lake_travis/textures/lake_travis_aerial.png</normal>
-                <size>400</size>
+                <size>200</size>
               </texture>
               <blend>
                 <min_height>2</min_height>
@@ -303,7 +335,7 @@
                 <fade_dist>5</fade_dist>
               </blend>
               <uri>file:///home/ark/coding/iq_sim/new_world/lake_travis/model://lake_travis/textures/lake_travis_heightmap.png</uri>
-              <size>400 400 20</size>
+              <size>200 200 20</size>
               <pos>0 0 0</pos>
             </heightmap>
           </geometry>
@@ -643,6 +675,20 @@
       <pose>-92.748267188898581 -102.36853108268591 0 0 0 0</pose>
       <self_collide>false</self_collide>
     </model>
+
+    <!--Persons-->
+
+    <!-- <include>
+      <uri>file:///home/ark/.gz/fuel/fuel.gazebosim.org/openrobotics/models/standing person/3</uri>
+      <name>person_standing</name>
+      <pose>-87.263630035617496 -136.88159162247359 0 0 0 0</pose>
+    </include> -->
+
+    <!-- <include>
+      <uri>file:///home/ark/.gz/fuel/fuel.gazebosim.org/openrobotics/models/standing person/3</uri>
+      <name>person_standing</name>
+      <pose>-87.263630035617496 -136.88159162247359 80 0 0 0</pose>
+    </include> -->
 
     <light name='sun' type='directional'>
       <pose>0 0 10 0 0 0</pose>
